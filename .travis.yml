@@ -5,15 +5,17 @@ notifications:
   email:  false
 services:
   - docker
+  
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
+  keep-history: true
+  on:
+    branch: master
 
 matrix:
   include:
-    - os:         linux
-      env:        TARGET=system-qt4-linux
-      addons:
-        apt:
-          packages:
-          - libqtwebkit-dev
 
     - os:         linux
       env:        TARGET=system-qt5-linux
@@ -23,16 +25,6 @@ matrix:
           - libqt5webkit5-dev
           - libqt5xmlpatterns5-dev
           - libqt5svg5-dev
-
-    - os:         linux
-      env:        TARGET=custom-qt4-linux
-
-    - os:         osx
-      osx_image:  xcode9.3
-      env:        TARGET=custom-qt4-osx
-
-    - os:         linux
-      env:        TARGET=custom-qt4-windows
 
 install:
 - sed -i -e 's/    SYNCQT_OPTS=/    SYNCQT_OPTS=-quiet/g' qt/configure
