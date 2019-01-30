@@ -55,3 +55,4 @@ script:
         sudo xcode-select --switch /Library/Developer/CommandLineTools && \
         MACOSX_DEPLOYMENT_TARGET=10.7 ../packaging/build vagrant macos-cocoa --clean --version - - $PWD;
     fi
+    ../packaging/build package-docker jessie-amd64 $PWD ../build
