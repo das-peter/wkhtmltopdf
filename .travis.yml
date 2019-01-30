@@ -20,7 +20,9 @@ deploy:
 after_success:
   - echo "AFTER SUCCESS"
   - "ls -al"
-  - "ls al ../"
+  - "ls -al bin/"
+  - "ls -al ../"
+  - "ls -al ../packaging"
 
 addons:
   artifacts: true
