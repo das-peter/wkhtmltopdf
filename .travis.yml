@@ -9,12 +9,18 @@ services:
 deploy:
   - provider: script
     script: bash -c "ls -al && ls -al .."
-  - provider: pages
-    skip-cleanup: true
-    github-token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
     keep-history: true
-    on:
-      branch: qt5-build
+#  - provider: pages
+#    skip-cleanup: true
+#    github-token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
+#    keep-history: true
+#    on:
+#      branch: qt5-build
+
+after_success:
+  - echo "AFTER SUCCESS"
+  - "ls -al"
+  - "ls al ../"
 
 addons:
   artifacts: true
