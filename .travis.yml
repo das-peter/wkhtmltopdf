@@ -7,12 +7,14 @@ services:
   - docker
   
 deploy:
-  provider: pages
-  skip-cleanup: true
-  github-token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
-  keep-history: true
-  on:
-    branch: qt5-build
+  - provider: script
+    script: bash -c "ls -al && ls -al .."
+  - provider: pages
+    skip-cleanup: true
+    github-token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
+    keep-history: true
+    on:
+      branch: qt5-build
 
 addons:
   artifacts: true
