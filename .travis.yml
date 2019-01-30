@@ -12,7 +12,12 @@ deploy:
     github-token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
     keep-history: true
     on:
-      branch: qt5-build
+      branch: gh-pages
+  - provider: releases
+    api_key: $GITHUB_TOKEN
+    file: "wkhtmltox_0.13-alpha-$TRAVIS_BUILD_NUMBER.jessie_amd64.db"
+    skip_cleanup: true
+    draft: true
 
 after_success:
   - echo "AFTER SUCCESS"
@@ -21,6 +26,7 @@ addons:
   artifacts: true
   paths:
     - bin
+    - bin/
 
 matrix:
   include:
